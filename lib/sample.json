@@ -1,0 +1,22 @@
+{
+  "company_name": "NepNinja",
+  "company_contact": {
+    "phone": "9999999999",
+    "email": "nepninja@gmail.com",
+    "address": "Kathmandu"
+  },
+  "employees": [
+    {
+      "id": 100,
+      "name": "Bindu",
+      "address": "Kathmandu",
+      "designation": "Software Engineer"
+    },
+    {
+      "id": 101,
+      "name": "John",
+      "address": "Georgia Atlanta",
+      "designation": "Software Engineer"
+    }
+  ]
+}

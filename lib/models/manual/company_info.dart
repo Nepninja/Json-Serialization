@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:manual_serialization/models/company_contact.dart';
-import 'package:manual_serialization/models/employee.dart';
+import 'package:manual_serialization/models/manual/company_contact.dart';
+import 'package:manual_serialization/models/manual/employee.dart';
 
 CompanyInfo companyInfoFromJson(String str) =>
     CompanyInfo.fromJson(json.decode(str));

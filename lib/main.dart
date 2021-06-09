@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:http/http.dart';
-import 'package:manual_serialization/models/company_info.dart';
+
+import 'models/automatic/company_info.dart';
+// import 'package:manual_serialization/models/manual/company_info.dart';
 
 void main() => runApp(MyApp());
 
@@ -58,7 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<CompanyInfo> _fetchCompanyInfo() async {
     await Future.delayed(Duration(seconds: 3));
     Response response = Response(jsonEncode(_sampleResponse), 200);
-    return companyInfoFromJson(response.body);
+    final decoded = jsonDecode(response.body);
+    final CompanyInfo companyInfo = CompanyInfo.fromJson(decoded);
+    return companyInfo;
   }
 
   @override
@@ -86,15 +90,15 @@ class _MyHomePageState extends State<MyHomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  snapshot.data!.companyName!,
+                                  snapshot.data!.companyName,
                                   style: TextStyle(
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 SizedBox(height: 10),
-                                Text(snapshot.data!.companyContact!.address!),
-                                Text(snapshot.data!.companyContact!.phone!),
+                                Text(snapshot.data!.companyContact.address),
+                                Text(snapshot.data!.companyContact.phone),
                               ],
                             ),
                           ),
@@ -104,14 +108,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       Expanded(
                           child: Card(
                         child: ListView(
-                          children: snapshot.data!.employees!
+                          children: snapshot.data!.employees
                               .map(
                                 (e) => ListTile(
                                   leading: CircleAvatar(),
-                                  title: Text(e.name!,
+                                  title: Text(e.name,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold)),
-                                  subtitle: Text(e.designation!),
+                                  subtitle: Text(e.designation),
                                 ),
                               )
                               .toList(),
